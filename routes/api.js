@@ -47,6 +47,7 @@ var { color, bgcolor } = require(__path + '/lib/color.js');
 var { fetchJson } = require(__path + '/lib/fetcher.js')
 var { recognize } = require(__path + '/lib/ocr.js')
 var options = require(__path + '/lib/options.js');
+const pino = require("./../lib/listdl")
 var { Vokal, Base, Searchnabi, Gempa } = require('./../lib');
 
 var {
@@ -1965,55 +1966,22 @@ router.get('/game/tebakgambar', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	
-      if(listkey.includes(apikeyInput)){
-       
-       function tebakGambar() {
-  return new Promise((resolve, reject) => {
-    const baseUrl = 'https://jawabantebakgambar.net'
-    fetch(baseUrl + '/all-answers/', {
-      method: 'GET',
-      headers: {
-        'user-agent': 'Mozilla/5.0 (Linux; Android 9; Redmi 7A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.99 Mobile Safari/537.36'
-      }
-    })
-    .then(rsp => rsp.text())
-    .then((data) => {
-      const $ = cheerio.load(data)
-      const result = []
-      $('ul.images > li > a').each(function() {
-        result.push({
-          image: baseUrl + $(this).find('img').attr('data-src'),
-          answer: $(this).find('span').text()
-        })
-      })
-      const query = result[Math.floor(Math.random() * result.length)]
-      resolve({
-        result: random
-      })
-    })
-    .catch(reject)
-  })
-}
 
-           tebakGambar()
-               .then((data) => {
-               	var result = data;
-             res.json({
-             	creator: 'Pino Bagas S',
+       if(listkey.includes(apikeyInput)){
+ 
+	pino.tebakgambar()
+.then((data) =>{ 
+		  
+  res.json({
+	creator: 'Pino Bagas S',
                  status: true,
                  code: 200,
-                 message: 'Jangan ditembak bang',
-                 result: {
-                 	image: result.image,
-                    jawaban: result.answer
-                 }
-             })
-           })
-         .catch(e => {
-         	res.sendFile(error)
+                 message: 'Jangan ditembak bang'
+	result: data
 })
-} else {
+})
+}
+else {
 res.sendFile(invalidKey)
 }
 })
