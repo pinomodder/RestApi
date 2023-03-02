@@ -39,7 +39,6 @@ var util = require('util');
 var qs = require('qs');
 var router  = express.Router();
 var { tts, readFileTxt, readFileJson, wait, simih, getBuffer, h2k, banner, getRandom, start, info, success, close, pickRandom } = require(__path + '/lib/functions.js');
-var { RemoveBg } = require('remove.bg');
 var { tahta } = require(__path + '/lib/tahta.js');
 var { createHash } = require('crypto')
 var { spawn, exec } = require('child_process');
@@ -1957,52 +1956,6 @@ router.get('/game/asahotak', async (req, res, next) => {
              })
           })
     } else {
-res.sendFile(invalidKey)
-}
-})
-
-router.get('/game/tebakgambar', async (req, res, next) => {
-        var apikeyInput = req.query.apikey
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-
-       if(listkey.includes(apikeyInput)){
- 
-function tebakgambar() {
-	return new Promise((resolve, reject) => {
-    axios.get('https://jawabantebakgambar.net/all-answers/')
-    .then(({ data }) => {
-    const $ = cheerio.load(data)
-    const data = [];
-    let random = Math.floor(Math.random() * 2836) + 2;
-    let link2 = 'https://jawabantebakgambar.net'
-    $(`#images > li:nth-child(${random}) > a`).each(function(a, b) {
-    const img = link2 + $(b).find('img').attr('data-src')
-    const jwb = $(b).find('img').attr('alt')
-    result.push({
-    	image: img,
-    	jawaban: jwb
-    })
-	let res = result[Math.floor(Math.random() * result.length)]
-    	resolve(res)
-    })
-    	})
-    .catch(reject)
-	})
-
-tebakgambar()
-      .then((data) => {
-		  
-  res.json ({
-	creator: 'Pino Bagas S',
-                 status: true,
-                 code: 200,
-                 message: 'Jangan ditembak bang'
-	result: data
-})
-})
-}
-else {
 res.sendFile(invalidKey)
 }
 })
