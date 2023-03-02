@@ -47,7 +47,7 @@ var { color, bgcolor } = require(__path + '/lib/color.js');
 var { fetchJson } = require(__path + '/lib/fetcher.js')
 var { recognize } = require(__path + '/lib/ocr.js')
 var options = require(__path + '/lib/options.js');
-const pino = require("./../lib/listdl")
+var pino = require("./../lib/listdl")
 var { Vokal, Base, Searchnabi, Gempa } = require('./../lib');
 
 var {
