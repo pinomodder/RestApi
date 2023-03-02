@@ -47,7 +47,6 @@ var { color, bgcolor } = require(__path + '/lib/color.js');
 var { fetchJson } = require(__path + '/lib/fetcher.js')
 var { recognize } = require(__path + '/lib/ocr.js')
 var options = require(__path + '/lib/options.js');
-var pino = require("./../lib/listdl")
 var { Vokal, Base, Searchnabi, Gempa } = require('./../lib');
 
 var {
@@ -1969,7 +1968,30 @@ router.get('/game/tebakgambar', async (req, res, next) => {
 
        if(listkey.includes(apikeyInput)){
  
-	pino.tebakgambar()
+function tebakgambar() {
+	return new Promise(async(resolve, reject) => {
+    axios.get('https://jawabantebakgambar.net/all-answers/')
+    .then(({ data }) => {
+    const $ = cheerio.load(data)
+    const result = [];
+    let random = Math.floor(Math.random() * 2836) + 2;
+    let link2 = 'https://jawabantebakgambar.net'
+    $(`#images > li:nth-child(${random}) > a`).each(function(a, b) {
+    const img = link2 + $(b).find('img').attr('data-src')
+    const jwb = $(b).find('img').attr('alt')
+    result.push({
+    	image: img,
+    	jawaban: jwb
+    })
+	let res = result[Math.floor(Math.random() * result.length)]
+    	resolve(res)
+    })
+    	})
+    .catch(reject)
+	})
+}
+
+tebakgambar()
 .then((data) =>{ 
 		  
   res.json({
