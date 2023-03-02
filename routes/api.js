@@ -1989,7 +1989,6 @@ function tebakgambar() {
     	})
     .catch(reject)
 	})
-}
 
 tebakgambar()
 .then((data) =>{ 
