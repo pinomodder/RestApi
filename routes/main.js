@@ -13,10 +13,6 @@ router.get('/docs', (req, res) => {
     res.sendFile(__path + '/views/index.html')
 })
 
-router.get('/api/uploader', (req, res) => {
-    res.sendFile(__path + '/views/uploader/index.html')
-})
-
 router.get('/api/about', (req, res) => {
     res.sendFile(__path + '/views/error.html')
 })
