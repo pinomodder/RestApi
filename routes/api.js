@@ -1969,7 +1969,7 @@ router.get('/game/tebakgambar', async (req, res, next) => {
        if(listkey.includes(apikeyInput)){
  
 function tebakgambar() {
-	return new Promise(async(resolve, reject) => {
+	return new Promise((resolve, reject) => {
     axios.get('https://jawabantebakgambar.net/all-answers/')
     .then(({ data }) => {
     const $ = cheerio.load(data)
