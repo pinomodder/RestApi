@@ -1973,7 +1973,7 @@ function tebakgambar() {
     axios.get('https://jawabantebakgambar.net/all-answers/')
     .then(({ data }) => {
     const $ = cheerio.load(data)
-    const result = [];
+    const data = [];
     let random = Math.floor(Math.random() * 2836) + 2;
     let link2 = 'https://jawabantebakgambar.net'
     $(`#images > li:nth-child(${random}) > a`).each(function(a, b) {
@@ -1991,9 +1991,9 @@ function tebakgambar() {
 	})
 
 tebakgambar()
-.then((data) =>{ 
+      .then((data) => {
 		  
-  res.json({
+  res.json ({
 	creator: 'Pino Bagas S',
                  status: true,
                  code: 200,
