@@ -1,4 +1,4 @@
-const url = 'process.php';
+const url = '/views/uploader/process.php';
 const form = document.querySelector('form');
 
 form.addEventListener('submit', e => {
