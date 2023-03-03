@@ -3,7 +3,7 @@ var __path = process.cwd(),
      { color } = require(__path + '/lib/color.js')
 
 // Connection URL
-var url = 'https://kuhong-api.herokuapp.com';
+var url = 'https://api.pinostore.my.id';
 try {
 if(url == 'https://kuhong-api.herokuapp.com') throw console.log(color('Cek konfigurasi database, var url belum diisi','red'));
 } catch (e) {
