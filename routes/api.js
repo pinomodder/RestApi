@@ -1978,7 +1978,7 @@ router.get('/game/tebakgambar', async (req, res, next) => {
          .catch(e => {
          	res.sendFile(invalidKey)
 })
-})
+}})
 
 router.get('/game/susunkata', async (req, res, next) => {
         var apikeyInput = req.query.apikey
