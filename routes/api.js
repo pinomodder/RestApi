@@ -1969,6 +1969,10 @@ router.get('/game/tebakgambar', async (req, res, next) => {
        fetch(encodeURI(`https://pinostore.my.id/database/tebakgambar.json`))
         .then(response => response.json())
         .then(data => {
+         creator: 'Pino Bagas S',
+         status: true,
+         code: 200,
+         message: 'Jangan ditembak bang',
         var result = data;
         var result = data[Math.floor(Math.random() * data.length)];
              res.json({
@@ -3464,6 +3468,25 @@ router.get('/random/quotesdilan ', async (req, res, next) => {
 res.sendFile(invalidKey)
 }
 })
+
+router.get('/random/wallml', async (req, res, next) => {
+                var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(listkey.includes(apikeyInput)){
+
+       fetch(encodeURI(`https://pinostore.my.id/database/wallml.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.sendFile(invalidKey)
+})
+}})
 
 router.get('/game/dare', async (req, res, next) => {
         var apikeyInput = req.query.apikey
