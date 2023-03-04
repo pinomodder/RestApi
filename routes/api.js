@@ -3465,7 +3465,7 @@ res.sendFile(invalidKey)
 }
 })
 
-router.get('/random/wallml', async (req, res, next) => {
+router.get('/others/wallml', async (req, res, next) => {
                 var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
