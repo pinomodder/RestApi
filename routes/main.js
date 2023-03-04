@@ -17,7 +17,7 @@ router.get('/api/about', (req, res) => {
     res.sendFile(__path + '/views/error.html')
 })
 router.get('/api/csrf', (req, res) => {
-    res.sendFile(__path + '/views/csrf.php')
+    res.sendFile(__path + '/views/csrf.html')
 })
 
 
