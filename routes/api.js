@@ -3465,31 +3465,6 @@ res.sendFile(invalidKey)
 }
 })
 
-router.get('/short/tiny', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-        url = req.query.url
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(listkey.includes(apikeyInput)){
-     if (!url) return res.json(loghandler.noturl)
-
-     request(`https://tinyurl.com/api-create.php?url=${url}`, function (error, response, body) {
-         try {
-             res.json({
-                 status : true,
-                 creator : `${creator}`,
-                 result : {
-                     link : `${body}`,
-                 },
-                 message : 'Jangan ditembak bang'
-             })
-         } catch(e => {
-         	res.sendFile(invalidKey)
-}
-     })
-})
-})
-
 router.get('/others/wallml', async (req, res, next) => {
     var apikeyInput = req.query.apikey
             
