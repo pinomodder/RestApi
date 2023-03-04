@@ -3487,7 +3487,8 @@ router.get('/short/tiny', async (req, res, next) => {
          	res.sendFile(invalidKey)
 }
      })
-}})
+})
+})
 
 router.get('/others/wallml', async (req, res, next) => {
     var apikeyInput = req.query.apikey
