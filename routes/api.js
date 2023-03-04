@@ -1960,6 +1960,26 @@ res.sendFile(invalidKey)
 }
 })
 
+router.get('/game/tebakgambar', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(listkey.includes(apikeyInput)){
+
+       fetch(encodeURI(`https://pinostore.my.id/database/tebakgambar.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+        var result = data[Math.floor(Math.random() * data.length)];
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.sendFile(invalidKey)
+})
+})
+
 router.get('/game/susunkata', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
