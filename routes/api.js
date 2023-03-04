@@ -3487,7 +3487,7 @@ router.get('/short/tiny', async (req, res, next) => {
          	res.sendFile(invalidKey)
 }
      })
-})
+}})
 
 router.get('/others/wallml', async (req, res, next) => {
     var apikeyInput = req.query.apikey
@@ -3505,7 +3505,7 @@ router.get('/others/wallml', async (req, res, next) => {
          .catch(e => {
          	res.sendFile(invalidKey)
 })
-}}})
+}})
 
 router.get('/game/dare', async (req, res, next) => {
         var apikeyInput = req.query.apikey
