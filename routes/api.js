@@ -332,31 +332,6 @@ router.get('/removekey', (req, res, next) => {
 
 
 // DATA API DOWNLOADER
-
-router.get('/downloader/mediafireDl', async (req, res) => {
-  var apikeyInput = req.query.apikey,
-            url = req.query.url
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-    if(!url) return res.json({ status : false, creator : `Pino Bagas S`, message : "Masukan parameter url"})
-        
-    if(listkey.includes(apikeyInput)){      
-       	
-  var hasil = await mediafireDl(link)
-  try {
-     res.json({
-                 creator: 'Pino Bagas S',
-                 status: true,
-                 code: 200,
-                 message: 'Jangan ditembak bang',
-                 hasil
-                 })
-          }
-    } else {
-res.sendFile(invalidKey)
-}
-})
-
 router.get('/downloader/fbdl', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             url = req.query.url
