@@ -16,10 +16,6 @@ router.get('/docs', (req, res) => {
 router.get('/api/about', (req, res) => {
     res.sendFile(__path + '/views/error.html')
 })
-router.get('/api/csrf', (req, res) => {
-    res.sendFile(__path + '/views/csrf.html')
-})
-
 
 router.get('/api/status', async(req, res) => {  
 
