@@ -3470,7 +3470,7 @@ router.get('/short/tiny', async (req, res, next) => {
         url = req.query.url
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
+	if(listkey.includes(apikeyInput)){
      if (!url) return res.json(loghandler.noturl)
 
      request(`https://tinyurl.com/api-create.php?url=${url}`, function (error, response, body) {
@@ -3505,7 +3505,7 @@ router.get('/others/wallml', async (req, res, next) => {
          .catch(e => {
          	res.sendFile(invalidKey)
 })
-}})
+}}})
 
 router.get('/game/dare', async (req, res, next) => {
         var apikeyInput = req.query.apikey
