@@ -46,7 +46,7 @@ var { color, bgcolor } = require(__path + '/lib/color.js');
 var { fetchJson } = require(__path + '/lib/fetcher.js')
 var { recognize } = require(__path + '/lib/ocr.js')
 var options = require(__path + '/lib/options.js');
-var { Vokal, Base, Searchnabi, Gempa } = require('./../lib');
+var { Vokal, Base, Searchnabi, mediafireDl, Gempa } = require('./../lib');
 
 var {
   pShadow,
@@ -332,6 +332,31 @@ router.get('/removekey', (req, res, next) => {
 
 
 // DATA API DOWNLOADER
+
+router.get('/downloader/mediafireDl', async (req, res) => {
+  var apikeyInput = req.query.apikey,
+            url = req.query.url
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+    if(!url) return res.json({ status : false, creator : `Pino Bagas S`, message : "Masukan parameter url"})
+        
+    if(listkey.includes(apikeyInput)){      
+       	
+  var hasil = await mediafireDl(link)
+  try {
+     res.json({
+                 creator: 'Pino Bagas S',
+                 status: true,
+                 code: 200,
+                 message: 'Jangan ditembak bang',
+                 hasil
+                 })
+          }
+    } else {
+res.sendFile(invalidKey)
+}
+})
+
 router.get('/downloader/fbdl', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             url = req.query.url
