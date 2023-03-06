@@ -5262,6 +5262,33 @@ res.sendFile(invalidKey)
 }
 })
 
+// SHORT FEATURES
+
+router.get('/short/tiny', async (req, res, next) => {
+    var apikeyInput = req.query.apikey,
+        url = req.query.url
+
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
+     if (!url) return res.json(loghandler.noturl)
+
+     request(`https://tinyurl.com/api-create.php?url=${url}`, function (error, response, body) {
+         try {
+             res.json({
+                 status: true,
+                 code: 200,
+                 result : {
+                     link : `${body}`,
+                 },
+                 message: 'Jangan ditembak bang'
+             })
+         } catch (e) {
+             console.log('Error :', color(e,'red'))
+             res.json(loghandler.invalidLink)
+         }
+     })
+})
+
 // OTHERS FEATURES
 
 router.get('/others/fakedata', async (req, res, next) => {
