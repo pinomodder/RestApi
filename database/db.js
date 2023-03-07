@@ -3,9 +3,9 @@ var __path = process.cwd(),
      { color } = require(__path + '/lib/color.js')
 
 // Connection URL
-var url = 'https://api.pinostore.my.id';
+var url = 'mongodb+srv://pinostore:oBgCYfInSDg4iniF@cluster0.ritftso.mongodb.net/?retryWrites=true&w=majority';
 try {
-if(url == 'https://kuhong-api.herokuapp.com') throw console.log(color('Cek konfigurasi database, var url belum diisi','red'));
+if(url == 'mongodb+srv://pinostore:oBgCYfInSDg4iniF@cluster0.ritftso.mongodb.net/?retryWrites=true&w=majority') throw console.log(color('Cek konfigurasi database, var url belum diisi','red'));
 } catch (e) {
 	return;
 	}
